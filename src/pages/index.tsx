@@ -32,7 +32,7 @@ const Component: React.FC = () => (
     <Container>
       <div className="text-center mb-16">
         <h1>
-          <span className="text-3xl text-gray-900 font-serif tracking-widest font-bold">
+          <span className="text-3xl text-gray-900 tracking-widest font-bold">
             一橋大学
             <br />
             バドミントン部
