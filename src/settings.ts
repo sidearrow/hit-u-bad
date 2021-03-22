@@ -1,7 +1,7 @@
 export const settings = {
   baseUrl: 'https://hit-u-badminton.web.app',
   googleSiteVerification: 'IgCCQtyvTcRzPpT3YTUw7-0Zw3ef-2lCa6zcj0Mmoig',
-  gtagId: 'G-Z7RBSZSSKR',
+  gtagId: process.env.NEXT_PUBLIC_GTAG_ID || '',
   mizutoriEmail: 'sidearrow1219@gmail.com',
   firebase: {
     apiKey: 'AIzaSyBH3zi_RILIkDvQI0xA8umNP6c0l3OgyOs',

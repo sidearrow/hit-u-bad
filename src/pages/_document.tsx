@@ -34,6 +34,21 @@ class MyDocument extends Document {
             name="google-site-verification"
             content={settings.googleSiteVerification}
           />
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${settings.gtagId}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', '${settings.gtagId}', {
+                    page_path: window.location.pathname,
+                  });`,
+            }}
+          />
         </Head>
         <body className="h-full">
           <Main />
