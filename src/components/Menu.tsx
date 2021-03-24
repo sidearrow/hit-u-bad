@@ -33,15 +33,11 @@ type MenuItemProps = {
   isActive: boolean;
 };
 
-const MenuItem: React.FC<MenuItemProps> = ({ children, isActive }) => {
+const MenuItem: React.FC<MenuItemProps> = ({ children }) => {
   return (
-    <div
-      className={`px-4 py-1 whitespace-nowrap ${
-        isActive ? ' bg-gray-100' : ''
-      }`}
-    >
+    <span className="px-2 py-1 inline-block bg-gray-100 rounded m-1">
       {children}
-    </div>
+    </span>
   );
 };
 
@@ -50,7 +46,7 @@ export const Menu: React.FC = () => {
   const pathname = router.pathname;
 
   return (
-    <aside className="p-4">
+    <div className="pb-4 text-center">
       {menuItems.map((item, i) => (
         <Link href={item.path} key={i}>
           <a>
@@ -58,6 +54,6 @@ export const Menu: React.FC = () => {
           </a>
         </Link>
       ))}
-    </aside>
+    </div>
   );
 };
