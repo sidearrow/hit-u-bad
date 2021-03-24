@@ -5,6 +5,7 @@ import { Member } from '../models';
 import { MemberBox } from '../components/MemberBox';
 
 import content from '../../content/member.json';
+import { PageHeader } from '../components/PageHeader';
 
 const PageComponent: React.FC = () => {
   const title = content.title;

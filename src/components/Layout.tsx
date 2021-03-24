@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import { Footer } from './Footer';
 import { Navbar } from './Navbar';
+import { PageHeader } from './PageHeader';
+import { Container } from './Container';
 
 type Props = {
   title: string;
@@ -20,13 +22,11 @@ export const Layout: React.FC<Props> = ({ children, title, description }) => {
       <header className="sticky top-0 z-50 bg-white">
         <Navbar />
       </header>
-      <main className="flex-grow flex-shrink relative max-w-screen-md mx-auto w-full">
-        <div className="flex-grow flex-shrink w-full">
-          <div className="p-4">
-            <h1 className="text-2xl font-bold mb-4">{title}</h1>
-            {children}
-          </div>
-        </div>
+      <main className="flex-grow flex-shrink">
+        {title !== '' && <PageHeader>{title}</PageHeader>}
+        <Container>
+          <div className="py-4">{children}</div>
+        </Container>
       </main>
       <footer>
         <Footer />

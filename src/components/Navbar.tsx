@@ -13,12 +13,12 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="shadow">
       <Container>
-        <div className="flex flex-row justify-between items-center p-4">
+        <div className="flex flex-row justify-between items-center py-4">
           <Link href="/">
-            <a className="navbar-item">一橋大学バドミントン部</a>
+            <a className="text-lg">一橋大学 バドミントン部</a>
           </Link>
           <button
-            className="text-lg px-1"
+            className="text-xl px-1"
             onClick={() => {
               toggleMenuShow();
             }}
