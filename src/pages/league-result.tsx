@@ -1,24 +1,13 @@
-import { GetStaticProps } from 'next';
 import React from 'react';
-import { Layout } from '../components/Layout';
+import { Layout } from 'components/Layout';
+import { Table, Td, Th } from 'components/Table';
+import { content } from 'content';
 
-import content from '../../content/league-result.json';
-import { Table, Td, Th } from '../components/Table';
+const { leagueResult } = content;
 
-type Content = {
-  title: string;
-  description: string;
-  content: {
-    season: string;
-    m: string;
-    w: string;
-  }[];
-};
-
-const Component: React.FC<{ content: Content }> = ({ content }) => {
-  const title = content.title;
-  const description = content.description;
-  const leagueResultContent = content.content;
+const Component: React.FC = () => {
+  const title = content.pages.leagueResult.title;
+  const description = content.pages.leagueResult.description;
 
   return (
     <Layout title={title} description={description}>
@@ -32,9 +21,9 @@ const Component: React.FC<{ content: Content }> = ({ content }) => {
             </tr>
           </thead>
           <tbody>
-            {leagueResultContent.map((v, i) => (
+            {leagueResult.map((v, i) => (
               <tr key={i}>
-                <Td>{v.season}</Td>
+                <Td>{v.year}</Td>
                 <Td>{v.m}</Td>
                 <Td>{v.w}</Td>
               </tr>
@@ -44,12 +33,6 @@ const Component: React.FC<{ content: Content }> = ({ content }) => {
       </section>
     </Layout>
   );
-};
-
-export const getStaticProps: GetStaticProps<{
-  content: Content;
-}> = async () => {
-  return { props: { content: content } };
 };
 
 export default Component;

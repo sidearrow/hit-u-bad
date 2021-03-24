@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import type { AppProps } from 'next/app';
-import '../styles/index.css';
 import { useRouter } from 'next/router';
 import { pageview } from '../lib/gtag';
+
+import 'index.css';
 
 const MyApp: React.FC<AppProps> = ({ pageProps, Component }) => {
   const router = useRouter();
@@ -15,11 +16,7 @@ const MyApp: React.FC<AppProps> = ({ pageProps, Component }) => {
       router.events.off('routeChangeComplete', handleRouteChange);
     };
   }, [router.events]);
-  return (
-    <>
-      <Component {...pageProps} />
-    </>
-  );
+  return <Component {...pageProps} />;
 };
 
 export default MyApp;

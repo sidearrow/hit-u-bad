@@ -2,11 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
+@import '../node_modules/@fortawesome/fontawesome-svg-core/styles.css';
 
 html {
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   height: 100%;
 }
 

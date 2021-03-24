@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { firebaseStorageGetDownloadUrl } from '../lib/firebaseUtils';
+import { firebaseStorageClient } from '../firebaseClient';
 
 type Props = {
   storagePath: string;
@@ -15,7 +15,7 @@ export const FirebaseStorageLink: React.FC<Props> = ({
   const clickHandler = () => {
     (async () => {
       if (url === '#') {
-        const __url = await firebaseStorageGetDownloadUrl(storagePath);
+        const __url = await firebaseStorageClient.getDownloadUrl(storagePath);
         setUrl(__url === null ? '/404' : __url);
       }
       if (dummyLinkRef.current !== null) {

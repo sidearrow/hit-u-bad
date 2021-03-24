@@ -1,22 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Layout } from '../components/Layout';
-import { microCMS } from '../microCMS';
-import { Member } from '../models';
-import { MemberBox } from '../components/MemberBox';
-
-import content from '../../content/member.json';
+import React from 'react';
+import { Layout } from 'components/Layout';
+import { MemberBox } from 'components/MemberBox';
+import { content } from 'content';
 
 const PageComponent: React.FC = () => {
-  const title = content.title;
-  const description = content.description;
-
-  const [members, setMembers] = useState<Member[]>([]);
-  useEffect(() => {
-    (async () => {
-      const _members = await microCMS.getMember();
-      setMembers(_members);
-    })();
-  }, []);
+  const title = content.pages.member.title;
+  const description = content.pages.member.description;
+  const members = content.members;
 
   return (
     <Layout title={title} description={description}>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { ExternalLink } from '../components/ExternalLink';
-import { Layout } from '../components/Layout';
-import { settings } from '../settings';
+import { ExternalLink } from 'components/ExternalLink';
+import { Layout } from 'components/Layout';
+import { settings } from 'settings';
 
 const Component: React.FC = () => (
   <Layout title="" description="一橋大学体育会バドミントン部の公式サイト">

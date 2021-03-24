@@ -1,23 +1,23 @@
 import React from 'react';
 
-export const Table: React.FC = ({ children }) => (
-  <div className="overflow-auto">
-    <table className="table-auto whitespace-nowrap w-full">{children}</table>
-  </div>
-);
+export const Table: React.FC<JSX.IntrinsicElements['table']> = (props) => {
+  const defaultClassName = ' w-full';
+  const className = (props.className || '') + defaultClassName;
+  props = { ...props, ...{ className: className } };
+  return <table {...props} />;
+};
 
-export const Th: React.FC = ({ children }) => (
-  <th className="font-bold bg-gray-200 py-1 px-2 border">{children}</th>
-);
+export const Th: React.FC<JSX.IntrinsicElements['th']> = (props) => {
+  const defaultClassName = ' font-bold bg-gray-100 py-1 px-2 border';
+  const className = (props.className || '') + defaultClassName;
+  props = { ...props, ...{ className: className } };
+  return <th {...props} />;
+};
 
-type TdProps = React.DetailedHTMLProps<
-  React.TdHTMLAttributes<HTMLTableDataCellElement>,
-  HTMLTableCellElement
->;
-
-export const Td: React.FC<TdProps> = (props) => {
+export const Td: React.FC<JSX.IntrinsicElements['td']> = (props) => {
   const baseClasses = ' px-2 py-1 border';
-  const className = `${props.className || ''} ${baseClasses}`;
+  const className = (props.className || '') + baseClasses;
+  props = { ...props, ...{ className: className } };
 
-  return <td {...props} className={className} />;
+  return <td {...props} />;
 };

@@ -3,7 +3,43 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Container } from './Container';
-import { Menu } from './Menu';
+
+const menuItems = [
+  {
+    text: '部活情報',
+    path: '/about',
+  },
+  {
+    text: '部員紹介',
+    path: '/member',
+  },
+  {
+    text: 'リーグ戦結果',
+    path: '/league-result',
+  },
+  {
+    text: '三多摩大会',
+    path: '/santama',
+  },
+  {
+    text: 'みずとり会',
+    path: '/mizutori',
+  },
+];
+
+export const Menu: React.FC = () => {
+  return (
+    <div className="pb-4 text-center">
+      {menuItems.map((item, i) => (
+        <Link href={item.path} key={i}>
+          <a className="px-2 py-1 inline-block bg-gray-100 rounded m-1">
+            {item.text}
+          </a>
+        </Link>
+      ))}
+    </div>
+  );
+};
 
 export const Navbar: React.FC = () => {
   const [isMenuShow, setIsMenuShow] = React.useState(false);
@@ -13,12 +49,12 @@ export const Navbar: React.FC = () => {
   return (
     <nav className="shadow">
       <Container>
-        <div className="flex flex-row justify-between items-center p-4">
+        <div className="flex flex-row justify-between items-center py-4">
           <Link href="/">
-            <a className="navbar-item">一橋大学バドミントン部</a>
+            <a className="text-lg">一橋大学 バドミントン部</a>
           </Link>
           <button
-            className="text-lg px-1"
+            className="text-xl px-1"
             onClick={() => {
               toggleMenuShow();
             }}
