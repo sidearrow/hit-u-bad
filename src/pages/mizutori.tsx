@@ -5,6 +5,8 @@ import { FirebaseStorageLink } from '../components/FirebaseStorageLink';
 import { Button } from '../components/Button';
 import { GetStaticProps } from 'next';
 import content from '../../content/mizutori.json';
+import { firebaseAuthClient } from '../firebaseClient';
+import { useRouter } from 'next/router';
 
 type Content = {
   title: string;
@@ -51,11 +53,22 @@ const MainComponent: React.FC<{ content: Content }> = ({ content }) => {
   const title = content.title;
   const description = content.description;
   const obmessage = content.obmessage;
+  const router = useRouter();
+
+  const logoutHandler = () => {
+    (async () => {
+      await firebaseAuthClient.logout();
+      router.push('/mizutori-login');
+    })();
+  };
 
   return (
     <Layout title={title} description={description}>
       <AuthGuard>
-        <section>
+        <div className="text-right">
+          <button onClick={logoutHandler}>ログアウト</button>
+        </div>
+        <section className="mt-4">
           <FirebaseStorageLink storagePath="/mizutori/mizutorikai-kaisoku.pdf">
             <Button color="gray">みずとり会会則</Button>
           </FirebaseStorageLink>
