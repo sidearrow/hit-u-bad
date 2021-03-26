@@ -1,59 +1,57 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Layout } from '../components/Layout';
 import { AuthGuard } from '../components/AuthGuard';
 import { FirebaseStorageLink } from '../components/FirebaseStorageLink';
 import { Button } from '../components/Button';
-import { GetStaticProps } from 'next';
-import content from '../../content/mizutori.json';
 import { firebaseAuthClient } from '../firebaseClient';
 import { useRouter } from 'next/router';
+import { microCMS } from '../microCMS';
+import { OBMessage } from '../models';
 
-type Content = {
-  title: string;
-  description: string;
-  obmessage: {
-    title: string;
-    content: {
-      year: number;
-      files: {
-        fileName: string;
-        viewName: string;
-      }[];
-    }[];
+const ObMessage: React.FC<{ obMessages: OBMessage[] }> = ({ obMessages }) => {
+  const years = [...new Set(obMessages.map((v) => v.year))].sort().reverse();
+  const [filteredObMessages, setFilteredObMessages] = useState(obMessages);
+
+  const onClickFilterYearButton = (year: number) => {
+    const _filteredObMessages = obMessages.filter((v) => v.year === year);
+    setFilteredObMessages(_filteredObMessages);
   };
-};
 
-const ObMessage: React.FC<{ obmessages: Content['obmessage']['content'] }> = ({
-  obmessages,
-}) => {
   return (
     <>
-      {obmessages.map((eachYear, i) => (
-        <React.Fragment key={i}>
-          <h3 className="h3">{eachYear.year} 年</h3>
-          <section>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
-              {eachYear.files.map((f, i) => (
-                <FirebaseStorageLink
-                  storagePath={`/mizutori/obmessage/${eachYear.year}/${f.fileName}`}
-                  key={i}
-                >
-                  <Button color="gray">{f.viewName}</Button>
-                </FirebaseStorageLink>
-              ))}
-            </div>
-          </section>
-        </React.Fragment>
-      ))}
+      <div className="mt-2">
+        {years.map((year, i) => (
+          <button
+            key={i}
+            className="inline-block px-2 py-1 bg-gray-100 rounded mr-1 mb-1"
+            onClick={() => {
+              onClickFilterYearButton(year);
+            }}
+          >
+            {year}
+          </button>
+        ))}
+      </div>
+      <div className="mt-2 grid grid-cols-2 md:grid-cols-5 gap-1">
+        {filteredObMessages.map((obMessage, i) => (
+          <FirebaseStorageLink
+            storagePath={`/mizutori/obmessage/${obMessage.year}/${obMessage.fileName}`}
+            key={i}
+          >
+            <Button color="gray">{obMessage.title}</Button>
+          </FirebaseStorageLink>
+        ))}
+      </div>
     </>
   );
 };
 
-const MainComponent: React.FC<{ content: Content }> = ({ content }) => {
-  const title = content.title;
-  const description = content.description;
-  const obmessage = content.obmessage;
+const Component: React.FC = () => {
+  const title = 'みずとり会のページ';
+  const description = '';
   const router = useRouter();
+
+  const [obMessages, setOBMessages] = useState<OBMessage[]>([]);
 
   const logoutHandler = () => {
     (async () => {
@@ -62,6 +60,13 @@ const MainComponent: React.FC<{ content: Content }> = ({ content }) => {
     })();
   };
 
+  useEffect(() => {
+    (async () => {
+      const _obMessages = await microCMS.getObMessage();
+      setOBMessages(_obMessages);
+    })();
+  }, []);
+
   return (
     <Layout title={title} description={description}>
       <AuthGuard>
@@ -69,25 +74,19 @@ const MainComponent: React.FC<{ content: Content }> = ({ content }) => {
           <button onClick={logoutHandler}>ログアウト</button>
         </div>
         <section className="mt-4">
-          <FirebaseStorageLink storagePath="/mizutori/mizutorikai-kaisoku.pdf">
-            <Button color="gray">みずとり会会則</Button>
-          </FirebaseStorageLink>
+          <div className="mt-2 grid grid-cols-2 md:grid-cols-5 gap-1">
+            <FirebaseStorageLink storagePath="/mizutori/mizutorikai-kaisoku.pdf">
+              <Button color="gray">みずとり会会則</Button>
+            </FirebaseStorageLink>
+          </div>
         </section>
-        <h2 className="h2">{obmessage.title}</h2>
-        <ObMessage obmessages={obmessage.content} />
+        <section className="mt-4">
+          <h3 className="text-lg">OB 通信</h3>
+          <ObMessage obMessages={obMessages} />
+        </section>
       </AuthGuard>
     </Layout>
   );
 };
 
-const PageComponent: React.FC<{ content: Content }> = ({ content }) => {
-  return <MainComponent content={content} />;
-};
-
-export const getStaticProps: GetStaticProps<{
-  content: Content;
-}> = async () => {
-  return { props: { content: content } };
-};
-
-export default PageComponent;
+export default Component;

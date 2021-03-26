@@ -1,4 +1,4 @@
-import { Member } from './models';
+import { Member, OBMessage } from './models';
 
 const API_KEY = 'c0c74eb6-9a33-4832-a2dd-bb6712371159';
 const BASE_URL = 'https://hitubadminton.microcms.io/api/v1';
@@ -49,9 +49,9 @@ class MicroCMS {
     return editedRes;
   }
 
-  async getObMessage() {
+  async getObMessage(): Promise<OBMessage[]> {
     const path = '/ob-message?limit=1000';
-    const res = await this.get(path);
+    const res: OBMessage[] = await this.get(path);
     return res;
   }
 }

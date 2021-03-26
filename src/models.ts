@@ -8,3 +8,10 @@ export type Member = {
   positions: string[];
   oldPositions: string[];
 };
+
+export type OBMessage = {
+  obMessageId: string;
+  year: number;
+  fileName: string;
+  title: string;
+};
