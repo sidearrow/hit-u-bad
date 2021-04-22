@@ -3,12 +3,8 @@ import Link from 'next/link';
 
 const menuItems = [
   {
-    text: '年間スケジュール',
-    path: '/annual-schedule',
-  },
-  {
-    text: '練習スケジュール',
-    path: '/practice-schedule',
+    text: '部活情報',
+    path: '/about',
   },
   {
     text: '部員紹介',

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Layout } from '../components/Layout';
 import { AuthGuard } from '../components/AuthGuard';
 import { FirebaseStorageLink } from '../components/FirebaseStorageLink';
 import { Button } from '../components/Button';
 import { firebaseAuthClient } from '../firebaseClient';
 import { useRouter } from 'next/router';
-import { microCMS } from '../microCMS';
 import { OBMessage } from '../models';
+import { content } from '../content';
+
+const { obMessages } = content;
 
 const ObMessage: React.FC<{ obMessages: OBMessage[] }> = ({ obMessages }) => {
   const years = [...new Set(obMessages.map((v) => v.year))].sort().reverse();
@@ -51,21 +53,12 @@ const Component: React.FC = () => {
   const description = '';
   const router = useRouter();
 
-  const [obMessages, setOBMessages] = useState<OBMessage[]>([]);
-
   const logoutHandler = () => {
     (async () => {
       await firebaseAuthClient.logout();
       router.push('/mizutori-login');
     })();
   };
-
-  useEffect(() => {
-    (async () => {
-      const _obMessages = await microCMS.getObMessage();
-      setOBMessages(_obMessages);
-    })();
-  }, []);
 
   return (
     <Layout title={title} description={description}>

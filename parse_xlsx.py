@@ -1,6 +1,4 @@
-from os import name
 import simplejson
-from openpyxl import load_workbook
 from pandas import read_excel
 
 
@@ -16,11 +14,15 @@ class WorkSheetLoader:
 
     def exec(self):
         result = {
+            "pages": self.__load_pages(),
             "annualSchedule": self.__load_annual_schedule(),
             "practiceSchedule": self.__load_practice_schedule(),
-            "member": self.__load_member(),
+            "members": self.__load_member(),
+            "santamaResult": self.__load_santama_results(),
+            "leagueResult": self.__load_league_result(),
+            "obMessages": self.__load_ob_messages(),
         }
-        with open("content.json", "w") as f:
+        with open("src/content.json", "w") as f:
             simplejson.dump(
                 result, f, ensure_ascii=False, indent=2, sort_keys=True, ignore_nan=True
             )
@@ -70,9 +72,9 @@ class WorkSheetLoader:
         )
 
         def split(v):
-            if type(v) != "str":
-                return []
-            return v.split(",")
+            if type(v) == str:
+                return v.split(",")
+            return []
 
         res = []
         for row in df.to_dict(orient="records"):
@@ -80,6 +82,55 @@ class WorkSheetLoader:
             row["oldPositions"] = split(row["oldPositions"])
             res.append(row)
         return res
+
+    def __load_santama_results(self):
+        names = ["year", "title", "fileName"]
+        df = read_excel(
+            self.filepath,
+            sheet_name="三多摩大会結果",
+            skiprows=1,
+            header=None,
+            names=names,
+            usecols="A:C",
+        )
+        return df.to_dict(orient="records")
+
+    def __load_pages(self):
+        names = ["id", "title", "description"]
+        df = read_excel(
+            self.filepath,
+            sheet_name="ページ",
+            skiprows=1,
+            header=None,
+            names=names,
+            usecols="A:C",
+            index_col="id",
+        )
+        return df.to_dict(orient="index")
+
+    def __load_league_result(self):
+        names = ["year", "m", "w"]
+        df = read_excel(
+            self.filepath,
+            sheet_name="リーグ戦結果",
+            skiprows=1,
+            header=None,
+            names=names,
+            usecols="A:C",
+        )
+        return df.to_dict(orient="records")
+
+    def __load_ob_messages(self):
+        names = ["obMessageId", "year", "title", "fileName"]
+        df = read_excel(
+            self.filepath,
+            sheet_name="OB通信",
+            skiprows=1,
+            names=names,
+            header=None,
+            usecols="A:D",
+        )
+        return df.to_dict(orient="records")
 
 
 l = WorkSheetLoader("./test.xlsx")
