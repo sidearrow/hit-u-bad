@@ -8,7 +8,7 @@ type Props = {
 export const MemberBox: React.FC<Props> = ({ member }) => {
   const genderColor =
     member.gender == 'm' ? 'border-blue-500' : 'border-red-500';
-  const grade = 2021 - member.admissionYear;
+  const grade = 2022 - member.admissionYear;
   return (
     <div className="border p-2">
       <div className="mb-2">
