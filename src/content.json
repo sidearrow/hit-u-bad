@@ -138,6 +138,11 @@
   ],
   "leagueResult": [
     {
+      "m": "4 部 4 位",
+      "w": "棄権",
+      "year": "2021 春"
+    },
+    {
       "m": "中止",
       "w": "中止",
       "year": "2020 秋"
@@ -420,6 +425,46 @@
         "副将",
         "みずとり係"
       ]
+    },
+    {
+      "admissionYear": 2020,
+      "faculty": "法学部",
+      "firstName": "恭尚",
+      "gender": "m",
+      "highschool": "大泉学園(東京)",
+      "lastName": "木村",
+      "oldPositions": [],
+      "positions": []
+    },
+    {
+      "admissionYear": 2020,
+      "faculty": "経済学部",
+      "firstName": "宏樹",
+      "gender": "m",
+      "highschool": "熊本（熊本）",
+      "lastName": "田中",
+      "oldPositions": [],
+      "positions": []
+    },
+    {
+      "admissionYear": 2020,
+      "faculty": "経済学部",
+      "firstName": "凛汰朗",
+      "gender": "m",
+      "highschool": "熊本（熊本）",
+      "lastName": "遠山",
+      "oldPositions": [],
+      "positions": []
+    },
+    {
+      "admissionYear": 2020,
+      "faculty": "商学部",
+      "firstName": "純也",
+      "gender": "m",
+      "highschool": "浦和(埼玉)",
+      "lastName": "中村",
+      "oldPositions": [],
+      "positions": []
     }
   ],
   "obMessages": [
@@ -1287,7 +1332,7 @@
       "normal": "-"
     },
     {
-      "dow": "備考",
+      "dow": null,
       "holiday": "水曜日は男子練",
       "normal": "金曜日は男子練"
     }
