@@ -1,0 +1,14 @@
+{
+    "name": "root/app",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "src/"
+        }
+    },
+    "require": {
+        "slim/slim": "^4.8",
+        "slim/psr7": "^1.4",
+        "firebase/php-jwt": "^5.4",
+        "vlucas/phpdotenv": "^5.3"
+    }
+}

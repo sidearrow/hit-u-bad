@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  app:
+    container_name: hit-u-bad-app
+    build:
+      context: .
+      dockerfile: ./app/Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ./app:/app
+  db:
+    container_name: hit-u-bad-db
+    build:
+      context: .
+      dockerfile: ./mysql/Dockerfile
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: hit_u_bad
+      MYSQL_USER: hit_u_bad
+      MYSQL_PASSWORD: hit_u_bad
+    ports:
+      - 13306:3306
