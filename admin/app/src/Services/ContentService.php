@@ -8,8 +8,6 @@ use Src\DB;
 
 class ContentService
 {
-    private string $contentFilePath;
-
     public function put(string $filepath, array $config): void
     {
         $xlsxReader = new XlsxReader();

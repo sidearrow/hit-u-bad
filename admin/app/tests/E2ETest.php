@@ -5,17 +5,54 @@ use PHPUnit\Framework\TestCase;
 
 class E2ETest extends TestCase
 {
-    public function test_auth()
+    public function testLoginSuccess()
     {
         $hc = new HttpClient();
 
         $res = $hc->request(
             'POST',
             'http://localhost/login',
-            ['json' => ['userName' => 'admin', 'password' => 'adminpassword']]
+            ['json' => ['userName' => 'admin', 'password' => 'adminpassword']],
         );
-        $resBody = json_decode((string)$res->getBody());
+        $this->assertEquals(200, $res->getStatusCode());
+        $token = json_decode((string)$res->getBody(), true)['token'];
 
-        $this->assertArrayHasKey('token', $resBody);
+        $res = $hc->request(
+            'GET',
+            'http://localhost/auth-check',
+            ['headers' => ['Authorization' => 'Bearer ' . $token]],
+        );
+        $this->assertEquals(200, $res->getStatusCode());
+    }
+
+    public function testLoginFailed()
+    {
+        $hc = new HttpClient();
+
+        $res = $hc->request(
+            'POST',
+            'http://localhost/login',
+            [
+                'json' => ['userName' => 'admin', 'password' => 'wrongpass'],
+                'http_errors' => false
+            ],
+        );
+        $this->assertEquals(401, $res->getStatusCode());
+    }
+
+    public function testAuthCheckFailed()
+    {
+        $hc = new HttpClient();
+
+        $res = $hc->request(
+            'GET',
+            'http://localhost/auth-check',
+            [
+                'headers' => ['Authorization' => 'Bearer: invalid-token'],
+                'http_errors' => false
+            ],
+        );
+        echo (string) $res->getBody();
+        $this->assertEquals(401, $res->getStatusCode());
     }
 }

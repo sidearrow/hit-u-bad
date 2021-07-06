@@ -9,13 +9,6 @@ use Slim\Psr7\Response;
 
 class AuthMiddleware
 {
-    private string $userName;
-
-    public function __construct(string $userName)
-    {
-        $this->userName = $userName;
-    }
-
     public function __invoke(Request $request, RequestHandler $requestHandler): Response
     {
         $response = new Response();
@@ -23,12 +16,9 @@ class AuthMiddleware
             $header = $request->getHeaderLine('Authorization');
             $token = trim(ltrim($header, 'Bearer'));
             $auth = Auth::getInstance();
-            $userName = $auth->check($token);
-            if ($userName != $this->userName) {
-                throw new Exception('invalid user');
-            }
+            $auth->check($token);
         } catch (Exception $e) {
-            $response = $response->withStatus(403);
+            $response = $response->withStatus(401);
             return $response;
         }
         $response = $requestHandler->handle($request);

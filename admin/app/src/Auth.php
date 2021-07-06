@@ -2,7 +2,7 @@
 
 namespace Src;
 
-use Error;
+use Exception;
 use Firebase\JWT\JWT;
 use Src\Config;
 
@@ -39,10 +39,10 @@ class Auth
     public function login(string $userName, string $password)
     {
         if (!array_key_exists($userName, $this->users)) {
-            throw new Error('user not found');
+            throw new Exception('user not found');
         }
         if (!password_verify($password, $this->users[$userName])) {
-            throw new Error('invalid password');
+            throw new Exception('invalid password');
         }
         $payload = [
             'userName' => $userName,

@@ -10,8 +10,7 @@ class LoginController extends BaseController
 {
     public function __invoke(Request $request, Response $response, array $args)
     {
-        $reqBody = json_decode($request->getBody(), true);
-
+        $reqBody = $request->getParsedBody();
         $userName = $reqBody['userName'];
         $password = $reqBody['password'];
 
@@ -20,7 +19,7 @@ class LoginController extends BaseController
             $resBody = json_encode(['token' => $jwt]);
             $response->getBody()->write($resBody);
         } catch (Exception $e) {
-            $response = $response->withStatus(400);
+            $response = $response->withStatus(401);
             $response->getBody()->write('invalid user or password');
         }
 
