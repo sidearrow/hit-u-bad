@@ -31,6 +31,13 @@ class DB
         self::$pdo = getPdo();
     }
 
+    public static function fetch(string $query, array $args = [])
+    {
+        $st = self::$pdo->prepare($query);
+        $st->execute($args);
+        return $st->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function fetchAll(string $query, array $args = [])
     {
         $st = self::$pdo->prepare($query);
