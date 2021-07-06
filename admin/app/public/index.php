@@ -3,8 +3,10 @@
 use Dotenv\Dotenv;
 use Slim\Factory\AppFactory;
 use Src\Auth;
+use Src\AuthMiddleware;
 use Src\Config;
 use Src\Controller;
+use Src\Controllers\LoginController;
 use Src\DB;
 
 require __DIR__ . '/../vendor/autoload.php';
@@ -17,8 +19,11 @@ DB::init();
 Auth::init();
 
 $app = AppFactory::create();
+$app->addBodyParsingMiddleware();
 
 $app->get("/", Controller::class . ":index");
+$app->post('/login', LoginController::class);
+$app->get('/auth-check');
 $app->get("/content", Controller::class . ":contentGet");
 $app->post("/content", Controller::class . ":contentPost");
 

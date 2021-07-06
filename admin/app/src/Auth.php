@@ -51,9 +51,9 @@ class Auth
         return $jwt;
     }
 
-    public function check(string $jwt, string $userName)
+    public function check(string $jwt)
     {
         $decoded = JWT::decode($jwt, $this->jwtKey, [self::JWT_ALG]);
-        return $decoded->userName === $userName;
+        return $decoded->userName;
     }
 }

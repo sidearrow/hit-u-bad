@@ -15,28 +15,6 @@ class Controller
         return $response;
     }
 
-    public function login(Request $request, Response $response, array $args)
-    {
-        $userName = $args['userName'];
-        $password = $args['password'];
-
-        $auth = Auth::getInstance();
-        try {
-            $jwt = $auth->login($userName, $password);
-            $resBody = json_encode(['token' => $jwt]);
-            $response->getBody()->write($resBody);
-        } catch (Exception $e) {
-            $response = $response->withStatus(400);
-            $response->getBody()->write('invalid user or password');
-        }
-
-        return $response;
-    }
-
-    public function check(Request $request, Response $response, array $args)
-    {
-    }
-
     public function contentGet(Request $request, Response $response, array $args)
     {
         $contentService = new ContentService();
