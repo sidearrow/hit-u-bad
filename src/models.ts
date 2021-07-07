@@ -51,3 +51,11 @@ export type Content = {
   practiceSchedule: PracticeSchedule;
   santamaResult: SantamaResult;
 };
+
+export type MemberPageData = {
+  title: string;
+  description: string;
+  contents: {
+    members: Member[];
+  };
+};

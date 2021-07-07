@@ -3,6 +3,10 @@ export const settings = {
   googleSiteVerification: 'IgCCQtyvTcRzPpT3YTUw7-0Zw3ef-2lCa6zcj0Mmoig',
   gtagId: process.env.NEXT_PUBLIC_GTAG_ID || '',
   mizutoriEmail: 'sidearrow1219@gmail.com',
+  microCms: {
+    apiKey: process.env.NEXT_PUBLIC_MICRO_CMS_API_KEY || '',
+    baseUrl: 'https://hitubadminton.microcms.io/api/v1/',
+  },
   firebase: {
     apiKey: 'AIzaSyBH3zi_RILIkDvQI0xA8umNP6c0l3OgyOs',
     authDomain: 'hit-u-badminton.firebaseapp.com',

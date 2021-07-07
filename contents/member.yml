@@ -1,0 +1,137 @@
+title: 部員情報
+description: 部員情報
+contents:
+  members:
+    - lastName: 大用
+      firstName: 智史
+      gender: m
+      admissionYear: 2018
+      faculty: 商学部
+      positions: []
+      oldPositions:
+        - 体育館係
+        - みずとり係
+      highschool: 栄光学園（神奈川）
+    - lastName: 西上
+      firstName: 航太朗
+      gender: m
+      admissionYear: 2018
+      faculty: 経済学部
+      positions: []
+      oldPositions:
+        - 会計係
+        - OB広報係
+        - HP係
+      highschool: 藤枝東（静岡）
+    - lastName: 平松
+      firstName: 孝基
+      gender: m
+      admissionYear: 2018
+      faculty: 商学部
+      positions: []
+      oldPositions:
+        - 主将
+        - 学連係
+      highschool: 海陽学園（愛知）
+    - lastName: 渡利
+      firstName: 宏紀
+      gender: m
+      admissionYear: 2018
+      faculty: 法学部
+      positions: []
+      oldPositions:
+        - 副将
+        - 主務
+      highschool: 日比谷(東京)
+    - lastName: 相吉
+      firstName: 玄晴
+      gender: m
+      admissionYear: 2019
+      faculty: 商学部
+      positions:
+        - 会計係
+      oldPositions: []
+      highschool: 国立（東京）
+    - lastName: 小磯
+      firstName: 真生
+      gender: w
+      admissionYear: 2019
+      faculty: 商学部
+      positions:
+        - OB係
+        - HP管理係
+      oldPositions: []
+      highschool: 東京農大第一（東京）
+    - lastName: 佐藤
+      firstName: 大樹
+      gender: m
+      admissionYear: 2019
+      faculty: 商学部
+      positions:
+        - 主務
+        - 体育館係
+      oldPositions: []
+      highschool: 国立（東京）
+    - lastName: 徳永
+      firstName: 峻介
+      gender: m
+      admissionYear: 2019
+      faculty: 経済学部
+      positions:
+        - 主将
+        - 学連係
+      oldPositions: []
+      highschool: 熊本（熊本）
+    - lastName: 福田
+      firstName: 佑季
+      gender: w
+      admissionYear: 2019
+      faculty: 法学部
+      positions:
+        - 女子主将
+        - 学連係
+      oldPositions:
+        - OB係
+      highschool: 西京（京都）
+    - lastName: 松永
+      firstName: 海
+      gender: m
+      admissionYear: 2019
+      faculty: 経済学部
+      positions:
+        - 副将
+        - みずとり係
+      oldPositions: []
+      highschool: 厚木（神奈川）
+    - lastName: 木村
+      firstName: 恭尚
+      gender: m
+      admissionYear: 2020
+      faculty: 法学部
+      positions: []
+      oldPositions: []
+      highschool: 大泉学園(東京)
+    - lastName: 田中
+      firstName: 宏樹
+      gender: m
+      admissionYear: 2020
+      faculty: 経済学部
+      positions: []
+      oldPositions: []
+      highschool: 熊本（熊本）
+    - lastName: 遠山
+      firstName: 凛汰朗
+      gender: m
+      admissionYear: 2020
+      faculty: 経済学部
+      positions: []
+      oldPositions: []
+      highschool: 熊本（熊本）
+    - lastName: 中村
+      firstName: 純也
+      gender: m
+      admissionYear: 2020
+      faculty: 商学部
+      positions: []
+      oldPositions: []
+      highschool: 浦和(埼玉)
