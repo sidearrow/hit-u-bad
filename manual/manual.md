@@ -1,34 +1,34 @@
 # MANUAL
 
-## 作業前に確認しておくこと
+## 更新の概要
 
-- 自分の環境を最新にしておく
-  - `git pull`
+部員情報のみ更新可能です。今後、更新可能なコンテンツを追加します
 
-## 起動
+### 1. コンテンツチェックのページで編集する
 
-```
-npm run dev
-```
+- https://hit-u-badminton.web.app/admin/check-content/member
+  - 認証はありませんが、こちらのページは確認用で、更新を実行できるわけではありません。
+- 画面左側がエディタ、右側がプレビューとなっています。
 
-- http://localhost:3000 にページが表示されます
+### 2. MicroCMS でコンテンツを保存する
 
-## 編集
+- https://hitubadminton.microcms.io
+- 左側のメニューから [コンテンツ] をクリックしてください。
+- 編集したいコンテンツをクリックしてください。
 
-- `./src/content.json` を編集します
+![-](./manual-02.png)
 
-## 更新
+- 1 の手順で編集した内容を「コンテンツ本文」に貼り付けて [公開] ボタンをクリックしてください。
+  - この時点でホームページの更新はされませんのでお気軽に保存してください。
+  - 再度 1 の手順のページを更新すると、保存した内容がデフォルトで反映されています。
 
-```
-git add ./src/content.json
-git commit -m "コメント"
-git push
-```
+![-](./manual-03.png)
 
-- https://github.com/sidearrow/hit-u-badminton-hp で以下の画像のようになれば更新完了です
-  - 黄色は更新中、赤色の × が出たら更新失敗です
-  - 失敗時は私の方でも確認します
+### 3. ページの更新を実施する
 
-![-](./manual-01.png)
+- GitHub のページ更新用ワークフローのページを開いてください
+  - https://github.com/sidearrow/hit-u-badminton-hp/actions/workflows/deploy.yml
+- [Run workflow] ボタンをクリックしてください。ページの更新が開始されます。
+- 緑のチェックマークが付きますと、更新完了です。
 
-- https://hit-u-badminton.web.app/ で正しく更新できたか確認してください
+![-](./manual-04.png)
