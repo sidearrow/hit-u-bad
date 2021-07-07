@@ -9,6 +9,9 @@
 - https://hit-u-badminton.web.app/admin/check-content/member
   - 認証はありませんが、こちらのページは確認用で、更新を実行できるわけではありません。
 - 画面左側がエディタ、右側がプレビューとなっています。
+- ページを更新すると、MicroCMS に保存されている内容に戻りますので、編集する際は別の場所で編集することをお勧めします。
+  - メモ帳でも問題ありませんが、[Visual Studio Code](https://azure.microsoft.com/ja-jp/products/visual-studio-code/) がお勧めです。
+  - ファイルとして保存する際は拡張子を `yaml` もしくは `yml` にすると良いです。
 
 ### 2. MicroCMS でコンテンツを保存する
 
