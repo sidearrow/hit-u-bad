@@ -2,5 +2,3 @@
 /.next/
 /out/
 /.firebase
-
-.env.*
