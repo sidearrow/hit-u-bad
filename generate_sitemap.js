@@ -10,6 +10,9 @@ const listPaths = (dir) => {
   }
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((dirent) => {
     if (dirent.isDirectory()) {
+      if (dirent.name === "admin") {
+        return [];
+      }
       return listPaths(`${dir}/${dirent.name}`);
     }
     if (dirent.isFile()) {
